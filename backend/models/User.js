@@ -38,8 +38,8 @@ function setupUser(sequelize){
         },
         role: {
             type: DataTypes.TEXT,
-            enum: ["admin", "moderator", "user"],
-            defaultValue: "worker",
+            enum: ["admin", "user"],
+            defaultValue: "user",
             allowNull: false
         },
     },
