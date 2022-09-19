@@ -1,0 +1,13 @@
+{
+    "feed": [
+        {
+            "message": "test message nr 1"
+        },
+        {
+            "message": "Obi Wan"
+        },
+        {
+            "message": "Obi Two"
+        }
+    ]
+}
