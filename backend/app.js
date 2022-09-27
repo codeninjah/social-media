@@ -9,6 +9,10 @@ app.use(express.json())
 app.use("/user", routes.user);
 //app.use("/api/tasks", routes.message);
 
+app.get('/', (req, res) => {
+    console.log("Lyckat")
+})
+
 app.listen(8080, function() {
     console.log("Server is running...")
 })
