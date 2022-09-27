@@ -13,6 +13,6 @@ router.post('/authenticate', AuthController.authenticate) //Login
 router.get('/getme', Auth.admin, UserController.getMe)
 router.post('/createuser', Auth.admin, UserController.create)
 
-router.delete('/:id', Auth.admin, UserController.delete) 
+router.delete('/:id', UserController.delete) 
 
 module.exports = router
