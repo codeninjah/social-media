@@ -5,8 +5,8 @@ const app = express()
 
 app.use(express.json())
 
-//Med följande 2 raderna funkar inte applikationen
-app.use("/user", routes.user);
+
+app.use('/api/user', routes.user);
 //app.use("/api/tasks", routes.message);
 
 app.get('/', (req, res) => {

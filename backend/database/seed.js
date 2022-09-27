@@ -13,16 +13,14 @@ sequelize.sync()
             username: 'Alex',
             user_email: "hgkls@al.se",
             password_hash: hashUserOne,
-            user_email: "hgkls@al.se",
             role: 'admin',
         },
         {
             username: 'Steph',
             user_email: "steph@steph.se",
             password_hash: hashUserTwo,
-            user_email: "hgkls@ks.se",
             role: 'admin',
-        }
+        },
     ])
          Message.bulkCreate([
             {
