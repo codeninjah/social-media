@@ -10,6 +10,7 @@ router.get('/all', Auth.user, messageController.getAll)
 
 //For admin
 router.get('/', Auth.admin, messageController.getAll) 
+router.get('/home', Auth.admin, messageController.getAllMine) 
 router.patch('/:id',Auth.admin, messageController.update) 
 router.post('/createmessage',Auth.admin, messageController.create) 
 

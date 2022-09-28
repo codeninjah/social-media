@@ -15,7 +15,12 @@ module.exports = {
     },
 
     async getAll(req, res, next){
-        const messages = await Message.findAll({where: {user_id : req.user.id}})
+        const messages = await Message.findAll() //{user_id : req.user.id}})
+        res.json(messages)
+    },
+
+    async getAllMine(req, res, next){
+        const messages = await Message.findAll({where:{user_id : req.user.id}})
         res.json(messages)
     },
 
