@@ -7,12 +7,11 @@ const express = require('express')
 const router = express.Router();
 
 //Admin
-//Admin ska kunna skapa nya konton och kunna radera resurser.
 router.post('/authenticate', AuthController.authenticate) //Login
-
 router.get('/getme', Auth.admin, UserController.getMe)
-router.post('/createuser', Auth.admin, UserController.create)
-
 router.delete('/:id', UserController.delete) 
+
+//This is used to create an account
+router.post('/createuser', UserController.create)
 
 module.exports = router
