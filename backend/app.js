@@ -1,10 +1,13 @@
 const express = require('express')
 const routes = require('./routes')
+const cors = require('cors')
 
 const logger = require('./middleware/logger')
 
 
 const app = express()
+
+app.use(cors())
 
 app.use(logger)
 app.use(express.json())

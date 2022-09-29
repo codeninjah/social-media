@@ -6,6 +6,15 @@
             :key="post">
             {{ post.message }}</li>
         </ul>
+
+        <h2>TEST DATA</h2>
+        <ul>
+            <li v-for="post of feed"
+            :key="post"> {{ post }}
+        </li>
+        </ul>
+        <h3>Test</h3>
+        {{ testLista }}
     </div>
 </template>
 
@@ -13,10 +22,33 @@
     export default{
         name: 'Global-Feed',
 
+        methods: {
+            baraTest(){
+                return this.$store.dispatch('getAllPosts')
+            },
+        
+            /*
+        testLista(){
+                console.log(this.$store.state.list)
+                return this.$store.dispatch('getAllPosts')
+            }
+            */
+        },
+
         computed: {
             feedArray(){
                 return this.$store.state.feedList
+            },
+            
+            testLista(){
+                //console.log(this.$store.state.list)
+                return this.$store.dispatch('getAllPosts')
+            },
+
+            feed(){
+                return this.$store.state.list
             }
+            
         }
     }
 </script>
