@@ -9,8 +9,8 @@
 
         <h2>TEST DATA</h2>
         <ul>
-            <li v-for="post of feed"
-            :key="post"> {{ post }}
+            <li v-for="(post, index) of feed"
+            :key="index"> {{ post[index].message }}
         </li>
         </ul>
         <h3>Test</h3>
@@ -27,12 +27,6 @@
                 return this.$store.dispatch('getAllPosts')
             },
         
-            /*
-        testLista(){
-                console.log(this.$store.state.list)
-                return this.$store.dispatch('getAllPosts')
-            }
-            */
         },
 
         computed: {
