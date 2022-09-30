@@ -21,11 +21,11 @@
             :key="post.message_id">
             {{ post }}
             <ul>
-            <li v-for="message of post"
-            :key="message.message_id">
-            {{ message.message }}
-        </li>
-        </ul>
+                <li v-for="message of post"
+                :key="message.message_id">
+                {{ message.message }}
+                </li>
+            </ul>
         </li>
         </ul>
     </div>

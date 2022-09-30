@@ -9,7 +9,7 @@
         </ul>
 
         <textarea id="message"></textarea>
-        <button @click="post()">Post this</button>
+        <button @click="postPost()">Post this</button>
 
     </div>
 </template>
@@ -21,7 +21,8 @@ import store from '@/store'
     export default{
         name: 'User-Profile',
         data(){ return{
-            postsList: []
+            postsList: [],
+            publishPost: {}
         }},
         methods: {
             post(){
@@ -30,6 +31,11 @@ import store from '@/store'
 
                 //Sending message to the global feed
                 store.dispatch('addToFeedList', msg)
+            },
+            postPost(){
+                var msg = document.getElementById("message").value
+                this.publishPost = msg
+                console.log(this.publishPost)
             }
         },
         computed : {

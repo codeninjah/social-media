@@ -64,7 +64,8 @@ export default new Vuex.Store({
       let res = await axios.get("http://localhost:8080/api/message/all")
       console.log("Data is: " + res.data)
       commit('GET_LIST', {posts: res.data})
-    }
+    },
+
 
   },
   modules: {
