@@ -20,6 +20,10 @@ export default new Vuex.Store({
     list : [],
   },
   getters: {
+    getList(state){
+      console.log("getList is: " + Object.values(state.list))
+      return state.list.filter(post => post.message == post.message)
+    }
   },
   mutations: {
     addToFeedList(state, data){
@@ -37,6 +41,7 @@ export default new Vuex.Store({
     },
 
     //Testar emot mutations GET_LIST
+    /*
     getAllPosts({ commit }) {
       axios
         .get("http://localhost:8080/api/message/all")
@@ -47,6 +52,18 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err)
         })
+    },
+    */
+    async getAllPosts({ commit }) {
+      const req = await fetch("http://localhost:8080/api/message/all")
+      const res = await req.json()
+      commit("GET_LIST", res)
+    },
+
+    async getPosts({ commit }) {
+      let res = await axios.get("http://localhost:8080/api/message/all")
+      console.log("Data is: " + res.data)
+      commit('GET_LIST', {posts: res.data})
     }
 
   },
