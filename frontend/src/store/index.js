@@ -42,6 +42,7 @@ export default new Vuex.Store({
       console.log("commit set user: ", user);
       state.user = user;
     },
+
   },
   actions: {
     addToFeedList(context, data){
@@ -62,6 +63,7 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
+
 
     //Testar emot mutations GET_LIST
     /*
@@ -103,7 +105,24 @@ export default new Vuex.Store({
     } catch (error) {
      console.log(error)
     }
-  }
+  },
+
+  //To register an user
+    async registerUser( {dispatch}, payload){
+      try{
+        const res = await axios.post("http://localhost:8080/api/user/createuser", payload)
+        console.log("Data is: " + res)
+        if(!res.error) {
+          API.setToken(res.data.token);
+          dispatch('GET_USER');
+        } else {
+          throw new Error(res.error)
+        }
+      }
+       catch (error) {
+        console.log(error)
+       }
+    }
 
 
   },

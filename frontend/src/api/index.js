@@ -75,6 +75,8 @@ export async function getAllMine(token) {
 
   export const getUserInfo = async () => await axios.get(`${BASE_URL}user/getme`);
 
+  export const createUserInfo = async (userData) => await axios.post(`${BASE_URL}user/createuser`, userData);
+
 
 
   

@@ -3,6 +3,7 @@
     <Feed />
     <Profile />
     <Login />
+    <Register />
   </div>
 </template>
 
@@ -10,11 +11,12 @@
 import Profile from './views/Profile.vue'
 import Feed from './views/Feed.vue'
 import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 
 export default {
   name: 'App',
   components: {
-    Profile, Feed, Login
+    Profile, Feed, Login, Register
   }
 }
 </script>
