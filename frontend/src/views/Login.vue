@@ -15,7 +15,7 @@
         v-model="user.password"
         required
     />
-    <input type="submit" />
+    <input type="submit"/>
 </form>
 
 </template>
@@ -36,7 +36,7 @@
         methods: {
             login(){
                 this.$store.dispatch('userLogin', {
-                    username: this.user.email,
+                    username: this.user.username,
                     password: this.user.password
                 });
             },

@@ -89,23 +89,18 @@ export default new Vuex.Store({
       commit('GET_LIST', {posts: res.data})
     },
 
-    async userLogin({ dispatch }) {
+    async userLogin( {dispatch}, payload ) {
       try{
-      const res = await fetch("http://localhost:8080/api/user/authenticate")
-      console.log("Login res: " + res)
+        const res = await axios.post("http://localhost:8080/api/user/authenticate", payload)
+        const token = res.data.token
+        console.log("Login res: " + res)
       if (!res.error) {
-        API.setToken(res.data.token);
+        API.setToken(token);
         dispatch('GET_USER');
       } else {
         throw new Error(res.error);
       }
     } catch (error) {
-      /*
-      commit(Mutations.SET_RESPONSE, {
-        type: "error",
-        message: error.response.data.error,
-      });
-      */
      console.log(error)
     }
   }

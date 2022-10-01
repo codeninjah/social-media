@@ -73,7 +73,7 @@ export async function getAllMine(token) {
     }
   }
 
-  export const getUserInfo = async () => await axios.get("/getMe");
+  export const getUserInfo = async () => await axios.get(`${BASE_URL}user/getme`);
 
 
 
