@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios';
 
+import * as API from "@/api";
+
 //import { getAllMessages, setToken } from '@/api/index'
 //import { LOGIN_URL, REGISTER_URL, MESSAGES_URL } from '@/api/index'
 //import { get, post } from '@/api/index'
@@ -18,6 +20,7 @@ export default new Vuex.Store({
 
     //Testar med att hämta en lista
     list : [],
+    user: null,
   },
   getters: {
     getList(state){
@@ -33,11 +36,31 @@ export default new Vuex.Store({
     //Testar emot state.list
     GET_LIST(state, posts) {
       state.list.push(posts)
-    }
+    },
+
+    SET_USER(state, user) {
+      console.log("commit set user: ", user);
+      state.user = user;
+    },
   },
   actions: {
     addToFeedList(context, data){
       context.commit('addToFeedList', data)
+    },
+
+    async GET_USER({ commit }) {
+      try {
+        const res = await API.getUserInfo();
+        console.log("get user info res: ", res);
+        if (!res.error) {
+          commit('SET_USER', res.data);
+          //router.push("/getMe");
+        } else {
+          throw new Error(res.error);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     //Testar emot mutations GET_LIST
@@ -65,6 +88,27 @@ export default new Vuex.Store({
       console.log("Data is: " + res.data)
       commit('GET_LIST', {posts: res.data})
     },
+
+    async userLogin({ dispatch }) {
+      try{
+      const res = await fetch("http://localhost:8080/api/user/authenticate")
+      console.log("Login res: " + res)
+      if (!res.error) {
+        API.setToken(res.data.token);
+        dispatch('GET_USER');
+      } else {
+        throw new Error(res.error);
+      }
+    } catch (error) {
+      /*
+      commit(Mutations.SET_RESPONSE, {
+        type: "error",
+        message: error.response.data.error,
+      });
+      */
+     console.log(error)
+    }
+  }
 
 
   },

@@ -73,19 +73,11 @@ export async function getAllMine(token) {
     }
   }
 
-  /*
-  const placeNewOrder = async (ORDER_URL, items) => {
-    try {
-      const response = await axios.post(ORDER_URL, items);
-      return response;
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  */
+  export const getUserInfo = async () => await axios.get("/getMe");
+
 
 
   
 
   export { setToken }; //, placeNewOrder};
-  export { get, post};
+  export { get, post };

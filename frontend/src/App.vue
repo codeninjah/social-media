@@ -2,17 +2,19 @@
   <div id="app">
     <Feed />
     <Profile />
+    <Login />
   </div>
 </template>
 
 <script>
 import Profile from './views/Profile.vue'
 import Feed from './views/Feed.vue'
+import Login from './views/Login.vue'
 
 export default {
   name: 'App',
   components: {
-    Profile, Feed
+    Profile, Feed, Login
   }
 }
 </script>
