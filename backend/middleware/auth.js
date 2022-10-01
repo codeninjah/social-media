@@ -69,7 +69,7 @@ module.exports = {
             req.user = user
         }
 
-          //req.user = user
+          //req.user = users
         
         next()
 

@@ -108,13 +108,14 @@ export default new Vuex.Store({
   },
 
   //To register an user
-    async registerUser( {dispatch}, payload){
+    async registerUser( {commit}, payload){
       try{
         const res = await axios.post("http://localhost:8080/api/user/createuser", payload)
         console.log("Data is: " + res)
+        const token = res.data.token
         if(!res.error) {
-          API.setToken(res.data.token);
-          dispatch('GET_USER');
+          API.setToken(token);
+          commit('SET_USER', res.data);
         } else {
           throw new Error(res.error)
         }
