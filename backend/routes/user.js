@@ -8,7 +8,8 @@ const router = express.Router();
 
 //Admin
 router.post('/authenticate', AuthController.authenticate) //Login
-router.get('/getme', Auth.admin, UserController.getMe)
+router.get('/getme', Auth.common, UserController.getMe)
+//router.get('/getme', Auth.user, UserController.getMe)
 router.delete('/:id', UserController.delete) 
 
 //This is used to create an account
