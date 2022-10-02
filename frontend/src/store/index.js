@@ -52,11 +52,15 @@ export default new Vuex.Store({
     //Publish posts
     async POST_POST( { commit }, payload) {
       try{
-        const res = await axios.post('http://localhost:8080/api/message/createmessage', payload)
+        const changedPayload = payload
+        changedPayload.user_id = this.state.user.user_id
+        const res = await axios.post('http://localhost:8080/api/message/createmessage', changedPayload)
         console.log("Post data is: " + res)
+        res.user_id 
         //const token = res.data.token
         if(!res.error){
           //API.setToken(token);
+          //commit('SET_USER', res.data)
           commit('GET_LIST', res.data)
         } else {
           throw new Error(res.error)
