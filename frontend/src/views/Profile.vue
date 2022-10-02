@@ -8,7 +8,7 @@
             :key="post">{{ post }}</li>
         </ul>
 
-        <textarea id="message"></textarea>
+        <textarea id="message" v-model="publishPost.message"></textarea>
         <button @click="postPost()">Post this</button>
 
     </div>
@@ -22,7 +22,10 @@ import store from '@/store'
         name: 'User-Profile',
         data(){ return{
             postsList: [],
-            publishPost: {}
+            publishPost: {
+                message: "",
+                user_id: 1
+            }
         }},
         methods: {
             post(){
@@ -34,8 +37,13 @@ import store from '@/store'
             },
             postPost(){
                 var msg = document.getElementById("message").value
-                this.publishPost = msg
-                console.log(this.publishPost)
+                this.publishPost.message = msg
+                //this.publishPost.user_id = 1
+                console.log("Published post is:" + this.publishPost)
+                this.$store.dispatch('POST_POST', {
+                    message: this.publishPost.message,
+                    user_id: this.publishPost.user_id
+                })
             }
         },
         computed : {

@@ -49,6 +49,24 @@ export default new Vuex.Store({
       context.commit('addToFeedList', data)
     },
 
+    //Publish posts
+    async POST_POST( { commit }, payload) {
+      try{
+        const res = await axios.post('http://localhost:8080/api/message/createmessage', payload)
+        console.log("Post data is: " + res)
+        //const token = res.data.token
+        if(!res.error){
+          //API.setToken(token);
+          commit('GET_LIST', res.data)
+        } else {
+          throw new Error(res.error)
+        }
+      } catch (error){
+        console.log(error)
+      }
+
+    },
+
     async GET_USER({ commit }) {
       try {
         const res = await API.getUserInfo();
