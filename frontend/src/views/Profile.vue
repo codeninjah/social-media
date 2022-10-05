@@ -24,7 +24,7 @@ import store from '@/store'
             postsList: [],
             publishPost: {
                 message: "",
-                user_id: 1
+                user_id: 1,
             }
         }},
         methods: {
@@ -39,11 +39,11 @@ import store from '@/store'
                 var msg = document.getElementById("message").value
                 this.publishPost.message = msg
                 //this.publishPost.user_id = 1
-                console.log("Published post is:" + this.publishPost)
+                console.log("Published post is:" + this.publishPost.message)
                 this.$store.dispatch('POST_POST', {
                     message: this.publishPost.message,
                     user_id: this.publishPost.user_id
-                })
+                });
             }
         },
         computed : {
