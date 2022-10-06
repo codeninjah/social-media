@@ -11,6 +11,10 @@
         <ul>
             <li v-for="post of feed"
             :key="post">{{ post }}
+                <ol>
+                <li v-for="message of post"
+                :key="message">{{ message.message }}</li>
+                </ol>
         </li>
         </ul>
         <h3>Test</h3>

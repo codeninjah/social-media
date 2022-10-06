@@ -1,40 +1,30 @@
 <template>
     <div>
         <h1>Profile view</h1>
-        <h4>Messages</h4>
+        {{ `Welcome ${getUser}` }}
 
-        <ul>
-            <li v-for="post of updatePostsList"
-            :key="post">{{ post }}</li>
-        </ul>
+        <h4>Wrote something</h4>
 
         <textarea id="message" v-model="publishPost.message"></textarea>
         <button @click="postPost()">Post this</button>
+
 
     </div>
 </template>
 
 
 <script>
-import store from '@/store'
+//import store from '@/store'
 
     export default{
         name: 'User-Profile',
         data(){ return{
-            postsList: [],
             publishPost: {
                 message: "",
                 user_id: 1,
             }
         }},
         methods: {
-            post(){
-                var msg = document.getElementById("message").value
-                this.postsList.push(msg)
-
-                //Sending message to the global feed
-                store.dispatch('addToFeedList', msg)
-            },
             postPost(){
                 var msg = document.getElementById("message").value
                 this.publishPost.message = msg
@@ -47,9 +37,13 @@ import store from '@/store'
             }
         },
         computed : {
-            updatePostsList(){
-                return this.postsList
-            }
+           myPosts(){
+            return this.$store.getters.getMyList
+           },
+           
+           getUser(){
+            return this.$store.getters.getUser
+           }
         }
     }
 </script>

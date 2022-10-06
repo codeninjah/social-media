@@ -8,7 +8,7 @@ import * as API from "@/api";
 //import { LOGIN_URL, REGISTER_URL, MESSAGES_URL } from '@/api/index'
 //import { get, post } from '@/api/index'
 
-import json from '@/assets/data.json'
+//import json from '@/assets/data.json'
 
 
 
@@ -16,23 +16,29 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    feedList: json.feed,
-
     //Testar med att hämta en lista
     list : [],
+    //myList: [],
     user: null,
   },
   getters: {
     getList(state){
       console.log("getList is: " + Object.values(state.list))
       return state.list.filter(post => post.message == post.message)
-    }
-  },
-  mutations: {
-    addToFeedList(state, data){
-      state.feedList.push({"message" : data})
     },
 
+    getMyList(state){
+      return state.list.filter(post => post.user_id == state.user.user_id)
+    },
+
+    getUser(state){
+      if(state.user != null){
+        return state.user.username
+      }
+    }
+
+  },
+  mutations: {
     //Testar emot state.list
     GET_LIST(state, posts) {
       state.list.push(posts)
@@ -53,7 +59,7 @@ export default new Vuex.Store({
     async POST_POST( { commit }, payload) {
       try{
         //const changedPayload = payload
-        //payload.user_id = this.state.user.user_id
+        payload.user_id = this.state.user.user_id
         const res = await axios.post('http://localhost:8080/api/message/createmessage', payload)
         console.log("Post data is: " + res)
         //const token = res.data.token
@@ -107,7 +113,7 @@ export default new Vuex.Store({
     },
 
     async getPosts({ commit }) {
-      let res = await axios.get("http://localhost:8080/api/message/all")
+      let res = await axios.get("http://localhost:8080/api/message/home")
       console.log("Data is: " + res.data)
       commit('GET_LIST', {posts: res.data})
     },
