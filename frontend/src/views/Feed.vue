@@ -40,11 +40,6 @@
         name: 'Global-Feed',
 
         methods: {
-            /*
-            baraTest(){
-                return this.$store.dispatch('getAllPosts')
-            },
-            */
         
         },
 
@@ -59,7 +54,6 @@
           
             
             testLista(){
-                //console.log(this.$store.state.list)
                 return this.$store.dispatch('getAllPosts')
             },
             

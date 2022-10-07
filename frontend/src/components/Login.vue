@@ -9,6 +9,7 @@
         v-model="user.username"
         required
     />
+    <label for="password">Password</label>
     <input
         type="password"
         id="password"
@@ -20,10 +21,9 @@
 
 </template>
 
-
 <script>
     export default{
-        name: 'Login-View',
+        name: 'LoginForm',
         data(){
             return {
                 user: {

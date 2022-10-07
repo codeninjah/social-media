@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        name: "Register-View",
+        name: "RegisterForm",
 
         data() {
             return {

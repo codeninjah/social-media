@@ -81,5 +81,5 @@ export async function getAllMine(token) {
 
   
 
-  export { setToken }; //, placeNewOrder};
+  export { setToken }; 
   export { get, post };

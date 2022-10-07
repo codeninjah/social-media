@@ -1,22 +1,20 @@
 <template>
   <div id="app">
+    <RegisterLogInView />
     <Feed />
     <Profile />
-    <Login />
-    <Register />
   </div>
 </template>
 
 <script>
 import Profile from './views/Profile.vue'
 import Feed from './views/Feed.vue'
-import Login from './views/Login.vue'
-import Register from './views/Register.vue'
+import RegisterLogInView from './views/RegisterLogIn.vue'
 
 export default {
   name: 'App',
   components: {
-    Profile, Feed, Login, Register
+    Profile, Feed, RegisterLogInView
   }
 }
 </script>

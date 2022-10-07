@@ -28,7 +28,6 @@
             postPost(){
                 var msg = document.getElementById("message").value
                 this.publishPost.message = msg
-                //this.publishPost.user_id = 1
                 console.log("Published post is:" + this.publishPost.message)
                 this.$store.dispatch('POST_POST', {
                     message: this.publishPost.message,

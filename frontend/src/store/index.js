@@ -4,23 +4,15 @@ import axios from 'axios';
 
 import * as API from "@/api";
 
-//import { getAllMessages, setToken } from '@/api/index'
-//import { LOGIN_URL, REGISTER_URL, MESSAGES_URL } from '@/api/index'
-//import { get, post } from '@/api/index'
-
-//import json from '@/assets/data.json'
-
-
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    //Testar med att hämta en lista
     list : [],
-    //myList: [],
     user: null,
   },
+
   getters: {
     getList(state){
       console.log("getList is: " + Object.values(state.list))
@@ -36,8 +28,8 @@ export default new Vuex.Store({
         return state.user.username
       }
     }
-
   },
+
   mutations: {
     //Testar emot state.list
     GET_LIST(state, posts) {
@@ -58,7 +50,6 @@ export default new Vuex.Store({
     //Publish posts
     async POST_POST( { commit }, payload) {
       try{
-        //const changedPayload = payload
         payload.user_id = this.state.user.user_id
         const res = await axios.post('http://localhost:8080/api/message/createmessage', payload)
         console.log("Post data is: " + res)
