@@ -1,5 +1,6 @@
 <template>
     <div>
+        <button @click="logOut()">Lout Out</button>
         <h1>Profile view</h1>
         {{ `Welcome ${getUser}` }}
 
@@ -14,6 +15,8 @@
 
 
 <script>
+//import store from '@/store'
+
 //import store from '@/store'
 
     export default{
@@ -33,6 +36,9 @@
                     message: this.publishPost.message,
                     user_id: this.publishPost.user_id
                 });
+            },
+            logOut(){
+                this.$store.dispatch('clearLocalStorage')
             }
         },
         computed : {

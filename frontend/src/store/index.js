@@ -39,6 +39,7 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       console.log("commit set user: ", user);
       state.user = user;
+      localStorage.setItem("user", user)
     },
 
   },
@@ -107,6 +108,10 @@ export default new Vuex.Store({
       let res = await axios.get("http://localhost:8080/api/message/home")
       console.log("Data is: " + res.data)
       commit('GET_LIST', {posts: res.data})
+    },
+
+    clearLocalStorage(){
+        localStorage.removeItem("user")
     },
 
     async userLogin( {dispatch}, payload ) {
