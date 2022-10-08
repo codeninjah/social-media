@@ -45,7 +45,7 @@
             
         },
         computed : {
-           myPosts(){
+           getMyList(){
             return this.$store.getters.getMyList
            },
            
