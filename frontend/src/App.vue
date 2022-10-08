@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <RegisterLogInView />
-    <Feed />
-    <Profile />
+    
+      <router-link to="/account">Account</router-link> |
+      <router-link to="/profile">Profile</router-link> | |
+      <router-link to="/feed">Feed</router-link>
+
+      <Router-view />
+
   </div>
 </template>
 
 <script>
-import Profile from './views/Profile.vue'
-import Feed from './views/Feed.vue'
-import RegisterLogInView from './views/RegisterLogIn.vue'
+//import Profile from './views/Profile.vue'
+//import Feed from './views/Feed.vue'
+//import RegisterLogInView from './views/RegisterLogIn.vue'
 
 export default {
   name: 'App',
+  /*
   components: {
     Profile, Feed, RegisterLogInView
   }
+  */
 }
 </script>
 
