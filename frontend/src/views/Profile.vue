@@ -37,9 +37,12 @@
                     user_id: this.publishPost.user_id
                 });
             },
+            
             logOut(){
+                console.log("Router is: " + this.$router)
                 this.$store.dispatch('clearLocalStorage')
-            }
+            },
+            
         },
         computed : {
            myPosts(){
@@ -48,7 +51,7 @@
            
            getUser(){
             return this.$store.getters.getUser
-           }
+           },
         }
     }
 </script>

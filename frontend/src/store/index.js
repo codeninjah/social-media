@@ -42,6 +42,11 @@ export default new Vuex.Store({
       localStorage.setItem("user", user)
     },
 
+    LOGG_OFF(state) {
+      state.user = null
+      console.log("Log off user: " + state.user)
+    }
+
   },
   actions: {
     addToFeedList(context, data){
@@ -110,8 +115,9 @@ export default new Vuex.Store({
       commit('GET_LIST', {posts: res.data})
     },
 
-    clearLocalStorage(){
+    clearLocalStorage({ commit }){
         localStorage.removeItem("user")
+        commit('LOGG_OFF')
     },
 
     async userLogin( {dispatch}, payload ) {
