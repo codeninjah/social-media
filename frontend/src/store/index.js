@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     list : [],
     user: null,
+    myList: [],
   },
 
   getters: {
@@ -19,13 +20,23 @@ export default new Vuex.Store({
       return state.list.filter(post => post.message == post.message)
     },
 
-    getMyList(state){
-      return state.list.filter(post => post.user_id == state.user.user_id)
+    
+    getMyPosts(state){
+      if(state.user){
+        return state.myList.filter(post => post.user_id == state.user) 
+      }
     },
+    
 
     getUser(state){
       if(state.user != null){
         return state.user.username
+      }
+    },
+
+    getUserId(state){
+      if(state.user != null){
+        return state.user.user_id
       }
     }
   },
@@ -34,6 +45,10 @@ export default new Vuex.Store({
     //Testar emot state.list
     GET_LIST(state, posts) {
       state.list.push(posts)
+    },
+
+    GET_MY_LIST(state, posts){
+      state.myList.push(posts)
     },
 
     SET_USER(state, user) {
@@ -48,6 +63,7 @@ export default new Vuex.Store({
     }
 
   },
+
   actions: {
     addToFeedList(context, data){
       context.commit('addToFeedList', data)
@@ -109,10 +125,11 @@ export default new Vuex.Store({
       commit("GET_LIST", res)
     },
 
-    async getPosts({ commit }) {
-      let res = await axios.get("http://localhost:8080/api/message/home")
-      console.log("Data is: " + res.data)
-      commit('GET_LIST', {posts: res.data})
+    async getPosts({ commit }, user_id) {
+      //const token = payload.data.token
+      const res = await API.getAllMine(user_id)
+      console.log("Data is: " + res)
+      commit('GET_MY_LIST', res)
     },
 
     clearLocalStorage({ commit }){

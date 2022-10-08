@@ -10,7 +10,8 @@ router.patch('/:id',Auth.user, messageController.update)
 
 //For admin
 //router.get('/', Auth.admin, messageController.getAll) 
-router.get('/home', Auth.admin, messageController.getAllMine) 
+router.get('/home', Auth.common, messageController.getAllMine) 
+
 router.patch('/:id', Auth.admin, messageController.update) 
 
 //Now working with posting new messages

@@ -7,7 +7,7 @@ const LOGIN_URL = `${BASE_URL}user/authenticate`;
 
 //const USER_URL = `${BASE_URL}me/`;
 
-const MESSAGES_URL = `${BASE_URL}message/all`;
+const MESSAGES_URL = `${BASE_URL}message/`;
 
 export {LOGIN_URL, REGISTER_URL, MESSAGES_URL};
 
@@ -44,14 +44,9 @@ const get = async (url) => {
 }
 
 //Get the logged in user's all messages
-export async function getAllMine(token) {
+export async function getAllMine(user_id) {
     try {
-      const response = await MESSAGES_URL.get('/home', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-  
+      const response = await axios.get(`${MESSAGES_URL}home`, user_id)
       return response.data
     } catch (e) {
       console.log(e.message)

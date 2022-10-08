@@ -10,6 +10,15 @@
         <button @click="postPost()">Post this</button>
 
 
+        {{ getMyList }}
+
+        <ul>
+            <li v-for="post of getPostsByMe"
+            :key="post"> {{ post }}
+            </li>
+        </ul>
+
+
     </div>
 </template>
 
@@ -32,9 +41,10 @@
                 var msg = document.getElementById("message").value
                 this.publishPost.message = msg
                 console.log("Published post is:" + this.publishPost.message)
+                console.log("getUser.user_id is: " + this.getUserId)
                 this.$store.dispatch('POST_POST', {
                     message: this.publishPost.message,
-                    user_id: this.publishPost.user_id
+                    user_id: this.getUserId
                 });
             },
             
@@ -45,13 +55,23 @@
             
         },
         computed : {
+            
+           getPostsByMe(){
+            console.log("CComputed returnerar: " + this.$store.getters.getMyPosts)
+            return this.$store.getters.getMyPosts
+           },
+           
            getMyList(){
-            return this.$store.getters.getMyList
+            return this.$store.dispatch('getPosts', this.getUserId)
            },
            
            getUser(){
             return this.$store.getters.getUser
            },
+
+           getUserId(){
+            return this.$store.getters.getUserId
+           }
         }
     }
 </script>
