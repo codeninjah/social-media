@@ -12,7 +12,13 @@
 
         <ul>
             <li v-for="post in getMyPosts"
-            :key="post"> {{ post }}
+            :key="post"> 
+                <ol>
+                    <li v-for="p in post"
+                    :key="p">
+                        {{ p.message }} U_id: {{ p.user_id}}
+                    </li>
+                </ol>
             </li>
         </ul>
 
