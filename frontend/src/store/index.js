@@ -46,8 +46,10 @@ export default new Vuex.Store({
   mutations: {
     //Testar emot state.list
     GET_LIST(state, posts) {
+      state.list = []
       state.list.push(posts)
     },
+
 
     GET_MY_LIST(state, posts){
       state.myList = []
