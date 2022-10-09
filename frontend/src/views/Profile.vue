@@ -10,6 +10,21 @@
         <button @click="postPost()">Post this</button>
 
 
+        <ul>
+            <li v-for="post in getMyPosts"
+            :key="post"> 
+                <ol>
+                    <li v-for="p in post"
+                    :key="p">
+                        {{ p.message }} U_id: {{ p.user_id}}
+                    </li>
+                </ol>
+            </li>
+        </ul>
+
+        {{ getMyPosts.length }}
+
+
     </div>
 </template>
 
@@ -27,14 +42,21 @@
                 user_id: 1,
             }
         }},
+
+        mounted() {
+                return this.$store.dispatch('getPosts', this.getUserId)
+           
+        },
+
         methods: {
             postPost(){
                 var msg = document.getElementById("message").value
                 this.publishPost.message = msg
                 console.log("Published post is:" + this.publishPost.message)
+                console.log("getUser.user_id is: " + this.getUserId)
                 this.$store.dispatch('POST_POST', {
                     message: this.publishPost.message,
-                    user_id: this.publishPost.user_id
+                    user_id: this.getUserId
                 });
             },
             
@@ -45,13 +67,25 @@
             
         },
         computed : {
-           getMyList(){
-            return this.$store.getters.getMyList
+            
+           getMyPosts(){
+            console.log("CComputed returnerar: " + this.$store.getters.getMyPosts)
+            return this.$store.getters.getMyPosts
            },
+           
+           /*
+           getMyList(){
+            return this.$store.dispatch('getPosts', this.getUserId)
+           },
+           */
            
            getUser(){
             return this.$store.getters.getUser
            },
+
+           getUserId(){
+            return this.$store.getters.getUserId
+           }
         }
     }
 </script>

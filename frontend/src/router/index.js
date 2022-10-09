@@ -7,7 +7,8 @@ import RegisterLogIn from '../views/RegisterLogIn'
 
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+{
     path: '/account',
     name: 'Account',
     component: RegisterLogIn
