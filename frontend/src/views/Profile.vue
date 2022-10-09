@@ -10,13 +10,13 @@
         <button @click="postPost()">Post this</button>
 
 
-        {{ getMyList }}
-
         <ul>
-            <li v-for="post of getPostsByMe"
+            <li v-for="post in getMyPosts"
             :key="post"> {{ post }}
             </li>
         </ul>
+
+        {{ getMyPosts.length }}
 
 
     </div>
@@ -36,6 +36,12 @@
                 user_id: 1,
             }
         }},
+
+        mounted() {
+                return this.$store.dispatch('getPosts', this.getUserId)
+           
+        },
+
         methods: {
             postPost(){
                 var msg = document.getElementById("message").value
@@ -56,14 +62,16 @@
         },
         computed : {
             
-           getPostsByMe(){
+           getMyPosts(){
             console.log("CComputed returnerar: " + this.$store.getters.getMyPosts)
             return this.$store.getters.getMyPosts
            },
            
+           /*
            getMyList(){
             return this.$store.dispatch('getPosts', this.getUserId)
            },
+           */
            
            getUser(){
             return this.$store.getters.getUser

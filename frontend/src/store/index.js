@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios';
 
 import * as API from "@/api";
+import router from '@/router';
 
 
 Vue.use(Vuex)
@@ -22,8 +23,9 @@ export default new Vuex.Store({
 
     
     getMyPosts(state){
-      if(state.user){
-        return state.myList.filter(post => post.user_id == state.user) 
+      if(state.user != null){
+        console.log("Mylist is: " + state.myList)
+        return state.myList
       }
     },
     
@@ -48,6 +50,7 @@ export default new Vuex.Store({
     },
 
     GET_MY_LIST(state, posts){
+      state.myList = []
       state.myList.push(posts)
     },
 
@@ -135,6 +138,7 @@ export default new Vuex.Store({
     clearLocalStorage({ commit }){
         localStorage.removeItem("user")
         commit('LOGG_OFF')
+        router.push('/account')
     },
 
     async userLogin( {dispatch}, payload ) {
