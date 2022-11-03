@@ -3,7 +3,8 @@ const { User } = require('../models');
 module.exports = {
     async getOne(req, res, next){
         try{
-            const user = await User.findOne({where:{id: req.params.id}})
+            const id  = req.body.id
+            const user = await User.findOne({where:{user_id: id}})
             if(!user){
                 //något felmeddelande
                 res.status(404).json()

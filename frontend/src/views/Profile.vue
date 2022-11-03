@@ -16,13 +16,12 @@
                 <ol>
                     <li v-for="p in post"
                     :key="p">
-                        {{ p.message }} U_id: {{ p.user_id}}
+                        {{ p.message }}
                     </li>
                 </ol>
             </li>
         </ul>
 
-        {{ getMyPosts.length }}
 
 
     </div>
@@ -89,3 +88,14 @@
         }
     }
 </script>
+
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    ol {
+        list-style-type: none;
+    }
+</style>

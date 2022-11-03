@@ -15,5 +15,9 @@ router.delete('/:id', UserController.delete)
 //This is used to create an account
 router.post('/createuser', UserController.create)
 
+router.get('/all', UserController.getAll)
+
+router.get('/test', UserController.getOne)
+
 
 module.exports = router

@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from 'axios';
 
 import * as API from "@/api";
@@ -13,12 +13,19 @@ export default new Vuex.Store({
     list : [],
     user: null,
     myList: [],
+    users: [],
+    postUser: null
   },
 
   getters: {
     getList(state){
       console.log("getList is: " + Object.values(state.list))
       return state.list.filter(post => post.message == post.message)
+    },
+
+    getUserByPostId(state){
+      return state.list.filter((post) => {post.user_id == state.user.user_id;
+         return state.user.username})
     },
 
     
@@ -28,7 +35,15 @@ export default new Vuex.Store({
         return state.myList
       }
     },
+
+    getUsers(state){
+      return state.users
+    },
     
+    getUsersByPost(state){
+      return state.users.filter((user) => {user.user_id == state.list.user_id;
+        return state.users.username})
+    },
 
     getUser(state){
       if(state.user != null){
@@ -40,7 +55,7 @@ export default new Vuex.Store({
       if(state.user != null){
         return state.user.user_id
       }
-    }
+    },
   },
 
   mutations: {
@@ -65,7 +80,17 @@ export default new Vuex.Store({
     LOGG_OFF(state) {
       state.user = null
       console.log("Log off user: " + state.user)
-    }
+    },
+
+    GET_ALL_USERS(state, userList){
+      state.users = []
+      state.users.push(userList)
+    },
+
+    GET_USER_BY_POST(state, payload){
+      state.postUser = payload
+      console.log("User is " + state.postUser)
+    },
 
   },
 
@@ -135,6 +160,18 @@ export default new Vuex.Store({
       const res = await API.getAllMine(user_id)
       console.log("Data is: " + res)
       commit('GET_MY_LIST', res)
+    },
+
+    async getAllUsers( { commit }){
+      const req = await fetch('http://localhost:8000/api/user/all')
+      const res = await req.json()
+      commit("GET_ALL_USERS", res)
+    },
+
+    async getPostUser( { commit }, payload ){
+      const req = await fetch('http://localhost:8000/api/user/:id', payload)
+      const res = await req.json()
+      commit("GET_USER_BY_POST", res)
     },
 
     clearLocalStorage({ commit }){
