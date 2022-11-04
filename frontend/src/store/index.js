@@ -40,9 +40,8 @@ export default new Vuex.Store({
       return state.users
     },
     
-    getUsersByPost(state){
-      return state.users.filter((user) => {user.user_id == state.list.user_id;
-        return state.users.username})
+    getUsersByPost: (state) => (id) => {
+      return state.users.find((user) => user.user_id === id)
     },
 
     getUser(state){
@@ -87,8 +86,8 @@ export default new Vuex.Store({
       state.users.push(userList)
     },
 
-    GET_USER_BY_POST(state, payload){
-      state.postUser = payload
+    GET_USER_BY_POST(state, res){
+      state.postUser = res
       console.log("User is " + state.postUser)
     },
 
@@ -163,13 +162,13 @@ export default new Vuex.Store({
     },
 
     async getAllUsers( { commit }){
-      const req = await fetch('http://localhost:8000/api/user/all')
+      const req = await fetch('http://localhost:8080/api/user/all')
       const res = await req.json()
       commit("GET_ALL_USERS", res)
     },
 
-    async getPostUser( { commit }, payload ){
-      const req = await fetch('http://localhost:8000/api/user/:id', payload)
+    async getPostUser( { commit }, id ){
+      const req = await fetch('http://localhost:8080/api/user/userbyid', id)
       const res = await req.json()
       commit("GET_USER_BY_POST", res)
     },

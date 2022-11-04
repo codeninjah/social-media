@@ -33,7 +33,8 @@
         name: 'Global-Feed',
 
         mounted() {
-            return this.$store.dispatch('getAllPosts')
+            this.$store.dispatch('getAllUsers')
+            this.$store.dispatch('getAllPosts')
             //return this.$store.dispatch('getAllUsers')
         },
 
@@ -51,7 +52,7 @@
                 return this.$store.getters.getUsers
             },
             getUsers(){
-                return this.$store.getters.getUsersByPost
+                return this.$store.getters.getUsersByPost()
             }
         }
     }

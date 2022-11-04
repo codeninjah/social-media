@@ -17,7 +17,7 @@ router.post('/createuser', UserController.create)
 
 router.get('/all', UserController.getAll)
 
-router.get('/test', UserController.getOne)
+router.get('/userbyid', UserController.getOne)
 
 
 module.exports = router
